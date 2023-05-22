@@ -1,0 +1,247 @@
+assignment 1
+
+import pandas as pd
+
+dataset = pd.read_csv(r'https://github.com/datasciencedojo/datasets/raw/master/titanic.csv')
+
+dataset.head()
+
+dataset.isnull().sum()
+
+dataset.describe()
+
+dataset.dtypes
+
+dataset['Fare'] = dataset['Fare'].fillna(0).astype('int64')
+
+dataset['Age'] = dataset['Age'].fillna(0).astype('int64')
+
+dataset.dtypes
+
+dataset['Sex'].replace(['female','male'],[0,1], inplace=True)
+
+dataset
+
+----------------------------------------------Assignment 2--------------------------------------------------------
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('https://github.com/YBI-Foundation/Dataset/raw/a6bcba4b6f9b87d8f924df1dacad300785571cfe/Titanic.csv')
+
+df
+
+df.head(10)
+
+df.info()
+
+df.describe()
+
+df.isnull()
+
+df.isnull().sum()
+
+df.dtypes
+
+df.age.astype('float')
+
+df.dtypes
+
+ab = pd.notnull(df['sex'])
+
+df[ab]
+
+df['age'].fillna('Null', inplace= True)
+
+df[10:25]
+
+df.replace(to_replace = np.nan , value = 000)
+
+df1 = df.dropna()
+
+df1 = df.dropna(axis=0, how='any')
+
+df.columns
+
+pwd
+
+import seaborn as sbn
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10,5))
+sbn.histplot(x=df['fare'])
+
+df[df['fare']> 500]
+
+df.drop([49,50,183,302], inplace=True)
+
+df
+
+
+------------------------------------------------------------------assignment 3---------------------------------------------------------
+#1
+
+import pandas as pd
+
+df = pd.read_csv('https://github.com/sudarshan-koirala/Salary-Prediciton-based-on-Years-of-Experience/raw/master/Salary_Data.csv')
+
+df.head()
+
+df.info()
+
+df.describe()
+
+df.min()
+
+df.max()
+
+df.mean()
+
+df.median()
+
+df.std()
+
+df.groupby(['YearsExperience']).count()
+
+#2
+
+iris = pd.read_csv('https://github.com/YBI-Foundation/Dataset/raw/main/IRIS.csv')
+
+iris.head()
+
+iris.groupby(['species']).mean()
+
+iris.groupby(['species']).std()
+
+iris.groupby(['species']).describe().transpose()
+
+iris.describe()
+
+----------------------------------------------------assignment 4 -----------------------------------------------------------------------
+
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('https://github.com/YBI-Foundation/Dataset/raw/main/Boston.csv')
+
+df.head()
+
+df.info()
+
+df.describe()
+
+df.columns
+
+y = df[['MEDV']]
+
+X = df.drop(['MEDV'], axis=1)
+
+from sklearn.preprocessing import MinMaxScaler
+mm = MinMaxScaler()
+
+X1 = pd.DataFrame(mm.fit_transform(X))
+
+X1
+
+X1.describe()
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X1, y, random_state=2529)
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+from sklearn.metrics import  mean_absolute_percentage_error, mean_squared_error, mean_absolute_error
+
+mean_absolute_percentage_error(y_test, y_pred)
+
+mean_squared_error(y_test, y_pred)
+
+mean_absolute_error(y_test, y_pred)
+
+-----------------------------------------------------------assignment5---------------------------------------
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('https://github.com/shivang98/Social-Network-ads-Boost/raw/master/Social_Network_Ads.csv')
+
+df.head()
+
+df.info()
+
+df['Purchased'].value_counts()
+
+df = pd.get_dummies(df)
+
+df.info()
+
+df.columns
+
+y = df['Purchased']
+
+X = df.drop(['Purchased', 'User ID'], axis=1)
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X,y)
+
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+from sklearn.metrics import classification_report, confusion_matrix
+
+print(classification_report(y_test, y_pred))
+
+confusion_matrix(y_test, y_pred)
+
+
+-----------------------------------------------------------------assignment 6------------------------------------------------------
+
+import pandas as pd
+
+df = pd.read_csv('https://github.com/YBI-Foundation/Dataset/raw/main/IRIS.csv')
+
+df.head()
+
+df.describe()
+
+df.info()
+
+X = df.drop(['species'], axis=1)
+y = df['species']
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X,y, random_state=123)
+
+from sklearn.naive_bayes import GaussianNB
+gaussian = GaussianNB()
+
+gaussian.fit(X_train, y_train)
+
+y_pred = gaussian.predict(X_test)
+
+y_pred
+
+from sklearn.metrics import confusion_matrix
+confusion_matrix(y_test, y_pred)
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+
+accuracy_score(y_test, y_pred)
+
+precision_score(y_test, y_pred, average='micro')
+
+recall_score(y_test, y_pred,average='micro')
