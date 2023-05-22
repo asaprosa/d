@@ -1,0 +1,38 @@
+
+
+--------------------------------------assignment 8 ------------------------------------------------------------
+
+
+import pandas as pd
+
+df = pd.read_csv('https://d17h27t6h515a5.cloudfront.net/topher/2016/September/57e9a84c_titanic-data/titanic-data.csv')
+
+df.head()
+
+df.describe()
+
+df.info()
+
+import seaborn as sns
+
+sns.countplot(x='Sex', data=df)
+
+sns.barplot(x='Sex', y='Survived', data=df)
+
+sns.barplot(x='Pclass', y='Survived', data=df)
+
+sns.pairplot(df, hue='Survived')
+
+sns.catplot(x='Sex', col = 'Embarked', data=df , kind = 'count')
+
+sns.heatmap(df.corr(),annot=True, linewidths=0.2)
+
+sns.histplot(x='Age', y='Fare', data=df,)
+
+---------------------------------------assignment9 --------------------------------------------------------
+
+
+i
+
+
+  

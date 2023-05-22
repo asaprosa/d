@@ -1,0 +1,13 @@
+mport pandas as pd
+import seaborn as sns
+
+titanic = pd.read_csv('https://raw.githubusercontent.com/dphi-official/Datasets/master/titanic_data.csv')
+titanic
+
+# Plot the box plot
+sns.boxplot(x='Sex', y='Age', hue='Survived', data=titanic)
+
+---------------------------------------assignment 10-------------------------------------------------------
+
+
+
